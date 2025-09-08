@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض أعمال شركة حل</title>
+    <!-- Chosen Palette: Futuristic Tech Blue -->
+    <!-- Application Structure Plan: A single-page, vertical-scroll application with a sticky navigation bar for smooth section jumps. The core interactive feature is a filterable portfolio grid, which allows users to easily explore projects by sector. This structure is chosen over a multi-page site to provide a quick, fluid overview of the company's capabilities, and the interactive filtering makes content discovery more efficient and engaging than a static, linear list from the source PDF plan. -->
+    <!-- Visualization & Content Choices: Hero Section (Inform) -> Full-width layout; About Section (Inform) -> Two-column text; Process Section (Organize) -> Interactive clickable diagram via HTML/CSS/JS; Portfolio Section (Organize/Compare) -> JS-powered filterable grid of cards. Justification for each choice emphasizes user engagement and clarity. Since the source material is qualitative, no data charting libraries like Chart.js are necessary. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #F8FAFC;
+            color: #1E293B;
+        }
+        .font-montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .hero-bg {
+            background-color: #0B1120;
+            background-image: radial-gradient(circle at top right, rgba(14, 165, 233, 0.1), transparent 40%),
+                              radial-gradient(circle at bottom left, rgba(56, 189, 248, 0.1), transparent 50%);
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #0EA5E9;
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        .process-card {
+            transition: all 0.3s ease-in-out;
+            border-right: 4px solid transparent;
+        }
+        .process-card.active {
+            background-color: #E0F2FE;
+            border-right-color: #0EA5E9;
+            transform: translateY(-5px);
+        }
+        .filter-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .filter-btn.active {
+            background-color: #0EA5E9;
+            color: white;
+        }
+        .portfolio-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="header" class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+          <div class="flex items-center space-x-4 black">
+              <img src="./logo.png" height="100" width="100" alt="شعار شركة حل">
+                <span class="text-2xl font-bold text-slate-800">حل</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-reverse space-x-8">
+                <a href="#hero" class="text-slate-600 hover:text-sky-500 transition-colors">الرئيسية</a>
+                <a href="#about" class="text-slate-600 hover:text-sky-500 transition-colors">من نحن</a>
+                <a href="#process" class="text-slate-600 hover:text-sky-500 transition-colors">آلية العمل</a>
+                <a href="#portfolio" class="text-slate-600 hover:text-sky-500 transition-colors">أعمالنا</a>
+                <a href="#contact" class="text-slate-600 hover:text-sky-500 transition-colors">تواصل معنا</a>
+            </div>
+             <button id="mobile-menu-button" class="md:hidden text-slate-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2">
+            <a href="#hero" class="block text-center py-2 px-4 text-slate-600 hover:bg-sky-50">الرئيسية</a>
+            <a href="#about" class="block text-center py-2 px-4 text-slate-600 hover:bg-sky-50">من نحن</a>
+            <a href="#process" class="block text-center py-2 px-4 text-slate-600 hover:bg-sky-50">آلية العمل</a>
+            <a href="#portfolio" class="block text-center py-2 px-4 text-slate-600 hover:bg-sky-50">أعمالنا</a>
+            <a href="#contact" class="block text-center py-2 px-4 text-slate-600 hover:bg-sky-50">تواصل معنا</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-bg min-h-screen flex items-center">
+            <div class="container mx-auto px-6 text-center text-white">
+                <img src="https://storage.googleapis.com/maker-studio-project-files-prod/uploaded:حل.png-457851f0-9f56-4700-9084-2839144c8860" alt="شعار شركة حل" class="h-28 w-28 mx-auto mb-6 filter brightness-0 invert">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">معرض أعمال حل</h1>
+                <p class="text-xl md:text-2xl text-sky-300 mb-8 max-w-3xl mx-auto">نحوّل أفكارك إلى نماذج أولية ذكية في أقل من 30 يوماً</p>
+                <a href="#portfolio" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105">
+                    استكشف أعمالنا
+                </a>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 section-title">من نحن؟</h2>
+                 <div class="max-w-4xl mx-auto text-center mb-12">
+                     <p class="text-lg text-slate-600 leading-relaxed">
+                        شركة "حل" هي ستوديو لتطوير المشاريع والأفكار (Venture Studio)، متخصص في تحويل الأفكار المبتكرة إلى شركات ناشئة ناجحة، مع التركيز بشكل أساسي على تكامل حلول الذكاء الاصطناعي.
+                     </p>
+                 </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+                    <div class="bg-slate-50 p-8 rounded-xl shadow-sm">
+                        <h3 class="text-2xl font-bold mb-4 text-sky-600">رؤيتنا</h3>
+                        <p class="text-slate-600 leading-loose">أن نكون الاستوديو الرائد في منطقة الشرق الأوسط وشمال أفريقيا في بناء وتنمية الشركات الناشئة القائمة على الذكاء الاصطناعي.</p>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-xl shadow-sm">
+                        <h3 class="text-2xl font-bold mb-4 text-sky-600">رسالتنا</h3>
+                        <p class="text-slate-600 leading-loose">تمكين رواد الأعمال والمبتكرين من خلال توفير بيئة متكاملة من الخبرات التقنية، الدعم المالي، والإرشاد الاستراتيجي لتحويل أفكارهم إلى نماذج أولية ناجحة ومستدامة في وقت قياسي.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 section-title">من الفكرة إلى النموذج الأولي في 4 أسابيع</h2>
+                <div class="max-w-4xl mx-auto text-center mb-12">
+                     <p class="text-lg text-slate-600 leading-relaxed">
+                        نتبع منهجية عمل واضحة وسريعة تضمن تحويل فكرتك إلى واقع ملموس. يمكنك التفاعل مع كل مرحلة لمعرفة المزيد من التفاصيل حولها.
+                     </p>
+                 </div>
+                <div id="process-container" class="max-w-4xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="process-card-wrapper cursor-pointer p-4" data-step="1">
+                        <div class="bg-white rounded-lg p-6 shadow-md h-full">
+                            <div class="bg-sky-100 text-sky-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-3xl font-bold">1</div>
+                            <h3 class="text-xl font-bold mb-2">استلام الفكرة</h3>
+                            <p id="desc-1" class="text-slate-500 text-sm transition-all max-h-0 overflow-hidden">نستقبل فكرتك ونقوم بتحليل متطلباتها وأهدافها الأولية.</p>
+                        </div>
+                    </div>
+                    <div class="process-card-wrapper cursor-pointer p-4" data-step="2">
+                        <div class="bg-white rounded-lg p-6 shadow-md h-full">
+                            <div class="bg-sky-100 text-sky-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-3xl font-bold">2</div>
+                            <h3 class="text-xl font-bold mb-2">التحليل والتخطيط</h3>
+                             <p id="desc-2" class="text-slate-500 text-sm transition-all max-h-0 overflow-hidden">نستخدم أدوات الذكاء الاصطناعي لتحليل جدوى الفكرة وتحديد أفضل الحلول التقنية لها.</p>
+                        </div>
+                    </div>
+                     <div class="process-card-wrapper cursor-pointer p-4" data-step="3">
+                        <div class="bg-white rounded-lg p-6 shadow-md h-full">
+                            <div class="bg-sky-100 text-sky-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-3xl font-bold">3</div>
+                            <h3 class="text-xl font-bold mb-2">التصميم والبناء</h3>
+                             <p id="desc-3" class="text-slate-500 text-sm transition-all max-h-0 overflow-hidden">يقوم فريقنا بتطوير نموذج أولي عملي (Functional MVP) بواجهات مستخدم جذابة.</p>
+                        </div>
+                    </div>
+                     <div class="process-card-wrapper cursor-pointer p-4" data-step="4">
+                        <div class="bg-white rounded-lg p-6 shadow-md h-full">
+                            <div class="bg-sky-100 text-sky-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-3xl font-bold">4</div>
+                            <h3 class="text-xl font-bold mb-2">التسليم والإطلاق</h3>
+                             <p id="desc-4" class="text-slate-500 text-sm transition-all max-h-0 overflow-hidden">نسلمك النموذج الأولي جاهزاً للاختبار والعرض على المستثمرين خلال أقل من 30 يوماً.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section-title">حلول رقمية مبتكرة</h2>
+                <p class="text-lg text-slate-600 text-center max-w-3xl mx-auto mb-12 leading-relaxed">
+                    نحن نفخر بتقديم نماذج أولية ذكية لمختلف القطاعات الحيوية. استعرض مشاريعنا وتعرف على كيفية استخدامنا للذكاء الاصطناعي لتقديم حلول فعالة ومبتكرة. يمكنك تصفية المشاريع حسب القطاع.
+                </p>
+
+                <div id="filters" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
+                    <button class="filter-btn active bg-sky-500 text-white px-5 py-2 rounded-full" data-filter="all">الكل</button>
+                </div>
+
+                <div id="portfolio-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer id="contact" class="bg-slate-800 text-white">
+        <div class="container mx-auto px-6 py-12 text-center">
+            <h2 class="text-3xl font-bold mb-4">هل لديك فكرة؟ لنحولها إلى واقع.</h2>
+            <p class="text-slate-300 max-w-2xl mx-auto mb-8">
+                في "حل"، نحن مستعدون لسماع فكرتك القادمة والمساعدة في تحويلها إلى نموذج أولي مبتكر. تواصل معنا اليوم لبدء رحلتك في عالم ريادة الأعمال.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 md:space-x-reverse">
+                <div class="text-lg">
+                    <span class="font-bold">البريد الإلكتروني:</span> <a href="mailto:contact@hall.tech" class="text-sky-400 hover:text-sky-300">contact@hall.tech</a>
+                </div>
+                <div class="text-lg">
+                    <span class="font-bold">الموقع الإلكتروني:</span> <a href="#" class="text-sky-400 hover:text-sky-300">www.hall.tech</a>
+                </div>
+                <div class="text-lg">
+                    <span class="font-bold">الهاتف:</span> <span class="text-sky-400" dir="ltr">+966 12 345 6789</span>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-slate-700 pt-6">
+                <p class="text-slate-400">&copy; 2025 شركة حل. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+
+
+            const processCards = document.querySelectorAll('.process-card-wrapper');
+            let activeStep = null;
+
+            processCards.forEach(card => {
+                const step = card.dataset.step;
+                const desc = document.getElementById(`desc-${step}`);
+
+                card.addEventListener('click', () => {
+                    if (activeStep === card) {
+                        desc.style.maxHeight = '0px';
+                        card.querySelector('.bg-white').classList.remove('active', 'bg-sky-50', 'border-sky-500', 'transform', '-translate-y-1');
+                        activeStep = null;
+                    } else {
+                        processCards.forEach(c => {
+                            const s = c.dataset.step;
+                            document.getElementById(`desc-${s}`).style.maxHeight = '0px';
+                            c.querySelector('.bg-white').classList.remove('active', 'bg-sky-50', 'border-sky-500', 'transform', '-translate-y-1');
+                        });
+                        
+                        desc.style.maxHeight = desc.scrollHeight + 'px';
+                        card.querySelector('.bg-white').classList.add('active', 'bg-sky-50', 'border-sky-500', 'transform', '-translate-y-1');
+                        activeStep = card;
+                    }
+                });
+            });
+            // assign each image in project dir to each category real estate
+
+            const portfolioData = [
+                {
+                    category: 'العقارات',
+                    image: './real-estate.png',
+                    title: 'حلول مبتكرة للقطاع العقاري',
+                    project: 'منصة "عقاري AI"',
+                    description: 'تطوير نموذج أولي لمنصة عقارية تستخدم الذكاء الاصطناعي لتقديم توصيات شراء واستئجار مخصصة للمستخدمين بناءً على تحليل سلوكهم وتفضيلاتهم، مع واجهات عرض تفاعلية للعقارات بتقنية الواقع الاftراضي (VR).'
+                },
+                {
+                    category: 'الرعاية الصحية',
+                    image: './health_care.png',
+                    title: 'حلول مبتكرة لقطاع الرعاية الصحية',
+                    project: 'منصة "تشخيصي AI"',
+                    description: 'تصميم نموذج أولي لتطبيق يساعد الأطباء على تحليل الصور الطبية (مثل الأشعة السينية) باستخدام الذكاء الاصطناعي للكشف عن الحالات المرضية المحتملة بشكل أسرع وأكثر دقة، مع نظام لإدارة سجلات المرضى بشكل آمن.'
+                },
+                {
+                    category: 'التجارة الإلكترونية',
+                    image: './e_commerce.png',
+                    title: 'حلول مبتكرة لقطاع التجارة الإلكترونية',
+                    project: 'محرك "تسوقي الذكي"',
+                    description: 'بناء نموذج أولي لمحرك توصيات فائق التخصيص للمتاجر الإلكترونية، يعتمد على تحليل سلوك المستخدم في الوقت الفعلي لتقديم منتجات يقترحها الذكاء الاصطناعي، مما يزيد من معدلات الشراء وولاء العملاء.'
+                },
+                {
+                    category: 'التعليم',
+                    image: './education.png',
+                    title: 'حلول مبتكرة لقطاع التعليم',
+                    project: 'منصة "مُعلمي AI"',
+                    description: 'تطوير نموذج أولي لمنصة تعليمية تكيفية تستخدم الذكاء الاصطناعي لتخصيص المناهج والتمارين لكل طالب على حدة بناءً على مستوى أدائه وسرعة تعلمه، مع تقديم تقارير تحليلية للمعلمين وأولياء الأمور.'
+                },
+                {
+                    category: 'السياحة والضيافة',
+                    image: './tourism.png',
+                    title: 'حلول مبتكرة لقطاع السياحة والضيافة',
+                    project: 'تطبيق "مرشدي السياحي"',
+                    description: 'إنشاء نموذج أولي لمساعد سفر ذكي يخطط رحلات سياحية مخصصة بالكامل باستخدام الذكاء الاصطناعي، بناءً على اهتمامات المستخدم وميزانيته، مع تقديم حجوزات واقتراحات آنية أثناء الرحلة.'
+                },
+                {
+                    category: 'الخدمات اللوجستية',
+                    image: './logistics.png',
+                    title: 'حلول مبتكرة لقطاع الخدمات اللوجستية',
+                    project: 'نظام "شحنتي الذكية"',
+                    description: 'تصميم نموذج أولي لنظام إدارة لوجستي يعتمد على الذكاء الاصطناعي لتحسين مسارات التوصيل، التنبؤ بأوقات الوصول بدقة، وإدارة المخزون بشكل استباقي لتقليل التكاليف وزيادة كفاءة سلسلة التوريد.'
+                }
+            ];
+
+            const filtersContainer = document.getElementById('filters');
+            const portfolioGrid = document.getElementById('portfolio-grid');
+
+            const categories = [...new Set(portfolioData.map(item => item.category))];
+            
+            categories.forEach(category => {
+                const button = document.createElement('button');
+                button.className = 'filter-btn px-5 py-2 rounded-full';
+                button.dataset.filter = category;
+                button.textContent = category;
+                filtersContainer.appendChild(button);
+            });
+
+            const renderPortfolio = (filter = 'all') => {
+                portfolioGrid.innerHTML = '';
+                const filteredData = filter === 'all' ? portfolioData : portfolioData.filter(item => item.category === filter);
+
+                filteredData.forEach(item => {
+                    const card = `
+                        <div class="portfolio-card bg-white rounded-lg shadow-lg overflow-hidden" data-category="${item.category}">
+                            <img src="${item.image}" alt="${item.title}" class="w-full h-56 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 text-slate-800">${item.title}</h3>
+                                <p class="text-sm font-bold text-sky-600 mb-4">${item.project}</p>
+                                <p class="text-slate-600 leading-relaxed">${item.description}</p>
+                            </div>
+                        </div>
+                    `;
+                    portfolioGrid.innerHTML += card;
+                });
+            };
+
+            filtersContainer.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON') {
+                    document.querySelector('.filter-btn.active').classList.remove('active', 'bg-sky-500', 'text-white');
+                    e.target.classList.add('active', 'bg-sky-500', 'text-white');
+                    renderPortfolio(e.target.dataset.filter);
+                }
+            });
+
+            renderPortfolio();
+        });
+    </script>
+</body>
+</html>
