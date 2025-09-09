@@ -67,14 +67,14 @@
 
     <header id="header" class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-          <div class="flex items-center space-x-4 black">
+          <div class="flex items-center black">
               <img src="./logo.png" height="100" width="100" alt="شعار شركة حل">
-                <span class="text-2xl font-bold text-slate-800">حل</span>
+                <span class="text-2xl mr-[-25px] font-bold text-slate-800">حل</span>
             </div>
             <div class="hidden md:flex items-center space-x-reverse space-x-8">
                 <a href="#hero" class="text-slate-600 hover:text-sky-500 transition-colors">الرئيسية</a>
                 <a href="#about" class="text-slate-600 hover:text-sky-500 transition-colors">من نحن</a>
-                <a href="#process" class="text-slate-600 hover:text-sky-500 transition-colors">آلية العمل</a>
+                <a href="./service.html" class="text-slate-600 hover:text-sky-500 transition-colors">خدماتنا</a>
                 <a href="#portfolio" class="text-slate-600 hover:text-sky-500 transition-colors">أعمالنا</a>
                 <a href="#contact" class="text-slate-600 hover:text-sky-500 transition-colors">تواصل معنا</a>
             </div>
@@ -84,8 +84,8 @@
         </nav>
         <div id="mobile-menu" class="hidden md:hidden bg-white py-2">
             <a href="#hero" class="block text-center py-2 px-4 text-slate-600 hover:bg-sky-50">الرئيسية</a>
-            <a href="#about" class="block text-center py-2 px-4 text-slate-600 hover:bg-sky-50">من نحن</a>
-            <a href="#process" class="block text-center py-2 px-4 text-slate-600 hover:bg-sky-50">آلية العمل</a>
+            <a href="#about" class="block text-center py-2 px-4 bg-black text-slate-600 hover:bg-sky-50">من نحن</a>
+            <a href="./service.html" class="block text-center py-2 px-4 text-slate-600 hover:bg-sky-50">خدماتنا</a>
             <a href="#portfolio" class="block text-center py-2 px-4 text-slate-600 hover:bg-sky-50">أعمالنا</a>
             <a href="#contact" class="block text-center py-2 px-4 text-slate-600 hover:bg-sky-50">تواصل معنا</a>
         </div>
@@ -208,7 +208,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
 

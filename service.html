@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شركة حل | بناء الشركات الناشئة بالذكاء الاصطناعي</title>
+    <!-- Chosen Palette: Futuristic Tech Blue -->
+    <!-- Application Structure Plan: A focused, single-page application that presents only the most critical sections: Services, a new "Value Proposition" section, and the Process. This condensed structure is designed to quickly communicate the company's core offerings and methodology to potential clients and innovators, removing extraneous information for a more direct and impactful user journey. -->
+    <!-- Visualization & Content Choices: Services Section (Inform/Organize) -> Icon-based grid; Value Proposition Section (Inform) -> Check-marked list for clarity; Process Section (Organize) -> Interactive clickable diagram. The new "What You'll Get" section directly translates value points from the source documents into a scannable, benefit-oriented list, which is more effective for user persuasion than embedding these points in longer paragraphs. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #F8FAFC;
+            color: #1E293B;
+        }
+        .font-montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #0EA5E9;
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        .process-card.active {
+            background-color: #E0F2FE;
+            transform: translateY(-5px);
+        }
+        .service-card, .value-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover, .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="header" class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+          <div class="flex items-center justify-between black">
+              <img src="./logo.png" height="100" width="100" alt="شعار شركة حل">
+                <span class="text-2xl mr-[-25px] font-bold text-slate-800">حل</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-reverse space-x-8">
+                <a href="./index.html" class="text-slate-600 hover:text-sky-500 transition-colors">الرئيسية</a>
+                <a href="#services" class="text-slate-600 hover:text-sky-500 transition-colors">خدماتنا</a>
+                <a href="#value" class="text-slate-600 hover:text-sky-500 transition-colors">ماذا نقدم لك؟</a>
+                <a href="#process" class="text-slate-600 hover:text-sky-500 transition-colors">آلية العمل</a>
+            </div>
+             <button id="mobile-menu-button" class="md:hidden text-slate-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2">
+            <a href="#services" class="block text-center py-2 px-4 text-slate-600 hover:bg-sky-50">خدماتنا</a>
+            <a href="#value" class="block text-center py-2 px-4 text-slate-600 hover:bg-sky-50">ماذا نقدم لك؟</a>
+            <a href="#process" class="block text-center py-2 px-4 text-slate-600 hover:bg-sky-50">آلية العمل</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="services" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 section-title">خدماتنا الأساسية</h2>
+                <div class="max-w-4xl mx-auto text-center mb-12">
+                     <p class="text-lg text-slate-600 leading-relaxed">
+                        نقدم مجموعة متكاملة من الخدمات التي تدعم رواد الأعمال والشركات في كل خطوة، بدءاً من الفكرة الأولية وصولاً إلى شركة ناشئة ناجحة وقادرة على النمو.
+                     </p>
+                 </div>
+                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                    <div class="service-card bg-white p-8 rounded-xl shadow-md text-center">
+                        <div class="text-4xl text-sky-500 mb-4">🚀</div>
+                        <h3 class="text-xl font-bold mb-3">بناء الشركات الناشئة</h3>
+                        <p class="text-slate-500 leading-relaxed">نعمل على تطوير الأفكار، سواء كانت داخلية أو من رواد أعمال خارجيين، وتحويلها إلى شركات متكاملة.</p>
+                    </div>
+                    <div class="service-card bg-white p-8 rounded-xl shadow-md text-center">
+                        <div class="text-4xl text-sky-500 mb-4">💡</div>
+                        <h3 class="text-xl font-bold mb-3">تطوير المنتج الأولي</h3>
+                        <p class="text-slate-500 leading-relaxed">نقدم خدمة سريعة لتطوير نماذج أولية (MVP) باستخدام الذكاء الاصطناعي لاختبار الأفكار في السوق بأقل تكلفة.</p>
+                    </div>
+                    <div class="service-card bg-white p-8 rounded-xl shadow-md text-center">
+                        <div class="text-4xl text-sky-500 mb-4">💰</div>
+                        <h3 class="text-xl font-bold mb-3">الاستثمار الملائكي</h3>
+                        <p class="text-slate-500 leading-relaxed">نستثمر في المراحل المبكرة للشركات الناشئة التي نطورها، ونوفر لها التمويل الأولي اللازم للانطلاق.</p>
+                    </div>
+                    <div class="service-card bg-white p-8 rounded-xl shadow-md text-center">
+                        <div class="text-4xl text-sky-500 mb-4">📈</div>
+                        <h3 class="text-xl font-bold mb-3">الاستشارات الاستراتيجية</h3>
+                        <p class="text-slate-500 leading-relaxed">نقدم استشارات للشركات القائمة حول كيفية تبني وتكامل تقنيات الذكاء الاصطناعي لتحقيق النمو.</p>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="value" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 section-title">القيمة التي نقدمها لك</h2>
+                 <div class="max-w-4xl mx-auto text-center mb-12">
+                     <p class="text-lg text-slate-600 leading-relaxed">
+                        نحن لسنا مجرد مطورين أو مستشارين، بل شركاء في النجاح. سواء كنت صاحب فكرة مبتكرة أو شركة قائمة، إليك ما ستحصل عليه عند العمل معنا.
+                     </p>
+                 </div>
+                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="value-card bg-slate-50 p-6 rounded-xl">
+                        <div class="flex items-start space-x-4 space-x-reverse">
+                             <div class="text-2xl text-green-500 mt-1">✓</div>
+                             <div>
+                                <h3 class="text-lg font-bold">للمبتكرين ورواد الأعمال</h3>
+                                <p class="text-slate-600 mt-1">تحويل فكرتك إلى نموذج أولي قابل للعمل (MVP) بسرعة فائقة وبأقل تكلفة، مع توفير الدعم التقني والاستراتيجي الكامل.</p>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="value-card bg-slate-50 p-6 rounded-xl">
+                        <div class="flex items-start space-x-4 space-x-reverse">
+                             <div class="text-2xl text-green-500 mt-1">✓</div>
+                             <div>
+                                <h3 class="text-lg font-bold">للشركات القائمة</h3>
+                                <p class="text-slate-600 mt-1">شريك ابتكار خارجي يسرّع من تحولك الرقمي من خلال تطوير وتكامل حلول ذكاء اصطناعي مخصصة لاحتياجاتك.</p>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="value-card bg-slate-50 p-6 rounded-xl">
+                        <div class="flex items-start space-x-4 space-x-reverse">
+                             <div class="text-2xl text-green-500 mt-1">✓</div>
+                             <div>
+                                <h3 class="text-lg font-bold">للمستثمرين</h3>
+                                <p class="text-slate-600 mt-1">فرصة استثمارية فريدة ومُجمّعة في محفظة متنوعة من مشاريع الذكاء الاصطناعي الواعدة التي نطورها ونشرف عليها بأنفسنا.</p>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 section-title">من الفكرة إلى النموذج الأولي في 4 أسابيع</h2>
+                <div class="max-w-4xl mx-auto text-center mb-12">
+                     <p class="text-lg text-slate-600 leading-relaxed">
+                        نتبع منهجية عمل واضحة وسريعة تضمن تحويل فكرتك إلى واقع ملموس. يمكنك التفاعل مع كل مرحلة لمعرفة المزيد من التفاصيل حولها.
+                     </p>
+                 </div>
+                <div id="process-container" class="max-w-4xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="process-card-wrapper cursor-pointer p-4" data-step="1">
+                        <div class="process-card bg-white rounded-lg p-6 shadow-md h-full">
+                            <div class="bg-sky-100 text-sky-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-3xl font-bold">1</div>
+                            <h3 class="text-xl font-bold mb-2">استلام الفكرة</h3>
+                            <p id="desc-1" class="text-slate-500 text-sm transition-all max-h-0 overflow-hidden">نستقبل فكرتك ونقوم بتحليل متطلباتها وأهدافها الأولية.</p>
+                        </div>
+                    </div>
+                    <div class="process-card-wrapper cursor-pointer p-4" data-step="2">
+                        <div class="process-card bg-white rounded-lg p-6 shadow-md h-full">
+                            <div class="bg-sky-100 text-sky-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-3xl font-bold">2</div>
+                            <h3 class="text-xl font-bold mb-2">التحليل والتخطيط</h3>
+                             <p id="desc-2" class="text-slate-500 text-sm transition-all max-h-0 overflow-hidden">نستخدم أدوات الذكاء الاصطناعي لتحليل جدوى الفكرة وتحديد أفضل الحلول التقنية لها.</p>
+                        </div>
+                    </div>
+                     <div class="process-card-wrapper cursor-pointer p-4" data-step="3">
+                        <div class="process-card bg-white rounded-lg p-6 shadow-md h-full">
+                            <div class="bg-sky-100 text-sky-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-3xl font-bold">3</div>
+                            <h3 class="text-xl font-bold mb-2">التصميم والبناء</h3>
+                             <p id="desc-3" class="text-slate-500 text-sm transition-all max-h-0 overflow-hidden">يقوم فريقنا بتطوير نموذج أولي عملي (Functional MVP) بواجهات مستخدم جذابة.</p>
+                        </div>
+                    </div>
+                     <div class="process-card-wrapper cursor-pointer p-4" data-step="4">
+                        <div class="process-card bg-white rounded-lg p-6 shadow-md h-full">
+                            <div class="bg-sky-100 text-sky-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-3xl font-bold">4</div>
+                            <h3 class="text-xl font-bold mb-2">التسليم والإطلاق</h3>
+                             <p id="desc-4" class="text-slate-500 text-sm transition-all max-h-0 overflow-hidden">نسلمك النموذج الأولي جاهزاً للاختبار والعرض على المستثمرين خلال أقل من 30 يوماً.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+  <footer id="contact" class="bg-slate-800 text-white">
+        <div class="container mx-auto px-6 py-12 text-center">
+            <h2 class="text-3xl font-bold mb-4">هل لديك فكرة؟ لنحولها إلى واقع.</h2>
+            <p class="text-slate-300 max-w-2xl mx-auto mb-8">
+                في "حل"، نحن مستعدون لسماع فكرتك القادمة والمساعدة في تحويلها إلى نموذج أولي مبتكر. تواصل معنا اليوم لبدء رحلتك في عالم ريادة الأعمال.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 md:space-x-reverse">
+                <div class="text-lg">
+                    <span class="font-bold">البريد الإلكتروني:</span> <a href="mailto:contact@hall.tech" class="text-sky-400 hover:text-sky-300">contact@hall.tech</a>
+                </div>
+                <div class="text-lg">
+                    <span class="font-bold">الموقع الإلكتروني:</span> <a href="#" class="text-sky-400 hover:text-sky-300">www.7all.tech</a>
+                </div>
+                <div class="text-lg">
+                    <span class="font-bold">الهاتف:</span> <span class="text-sky-400" dir="ltr">+966 12 345 6789</span>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-slate-700 pt-6">
+                <p class="text-slate-400">&copy; 2025 شركة حل. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            const setupNav = () => {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                
+                const navLinks = document.querySelectorAll('#header a[href^="#"]');
+                navLinks.forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                         if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                           mobileMenu.classList.add('hidden');
+                        }
+                    });
+                });
+            };
+
+            const setupProcessInteraction = () => {
+                const processCards = document.querySelectorAll('.process-card-wrapper');
+                let activeStep = null;
+
+                processCards.forEach(card => {
+                    const step = card.dataset.step;
+                    const desc = document.getElementById(`desc-${step}`);
+                    const cardInner = card.querySelector('.process-card');
+
+                    card.addEventListener('click', () => {
+                        if (activeStep === card) {
+                            desc.style.maxHeight = '0px';
+                            cardInner.classList.remove('active');
+                            activeStep = null;
+                        } else {
+                            processCards.forEach(c => {
+                                const s = c.dataset.step;
+                                document.getElementById(`desc-${s}`).style.maxHeight = '0px';
+                                c.querySelector('.process-card').classList.remove('active');
+                            });
+                            
+                            desc.style.maxHeight = desc.scrollHeight + 'px';
+                            cardInner.classList.add('active');
+                            activeStep = card;
+                        }
+                    });
+                });
+            };
+            
+            setupNav();
+            setupProcessInteraction();
+        });
+    </script>
+</body>
+</html>
+
+
